@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="imagem/png" href="ae-logo.png" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>AÇÃO EMPREENDEDORA FORMULARIO</title>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>Inscreva-se</h2>
+    </div>
+
+    <form id="form" class="form">
+      <div class="form-control">
+        <label for="username">Nome do aluno</label>
+        <input type="text" id="username" name="username" placeholder="Digite seu nome..." />
+        <small>Mensagem de erro</small>
+      </div>
+    
+      <div class="form-control">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" placeholder="Digite seu @escola..." />
+        <small>Mensagem de erro</small>
+      </div>
+    
+      <div class="form-control">
+        <label for="serie">Série</label>
+        <input type="text" id="serie" name="serie" placeholder="Digite sua série..." />
+        <small>Mensagem de erro</small>
+      </div>
+    
+      <button type="submit">Enviar</button>
+    </form>
+</div>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    // Inicializa o EmailJS com a chave pública
+    emailjs.init("kKw-JDfqoS32nlFGC"); // vai em https://dashboard.emailjs.com/admin/account e pega a public key e coloca ali
+
+    const form = document.getElementById("form");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        enviarEmailJS();
+    });
+
+    function enviarEmailJS() {
+        // Envia o formulário usando os IDs corretos
+        emailjs.sendForm("service_0sodnng", "template_x355rvl", form) // coloca os bglh de service e template aqui
+            .then(() => {
+                alert("E-mail enviado com sucesso!");
+            })
+            .catch((error) => {
+                alert("Erro no envio do e-mail. Verifique as configurações.");
+                console.error("Erro ao enviar e-mail:", error);
+            });
+    }
+});
+
+</script>
+
+<script src="./scripts.js" defer></script>
+</body>
+</html>
